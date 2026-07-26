@@ -88,3 +88,4 @@ E:\Twitch Stuff\LTCrawlerSSR\bin\Debug\net10.0\Microsoft.AspNetCore.Http.Connect
 E:\Twitch Stuff\LTCrawlerSSR\bin\Debug\net10.0\Microsoft.AspNetCore.SignalR.Client.dll
 E:\Twitch Stuff\LTCrawlerSSR\bin\Debug\net10.0\Microsoft.AspNetCore.SignalR.Client.Core.dll
 E:\Twitch Stuff\LTCrawlerSSR\obj\Debug\net10.0\LTCrawle.93AB360E.Up2Date
+E:\Twitch Stuff\LTCrawlerSSR\obj\Debug\net10.0\LTCrawlerSSR.sourcelink.json

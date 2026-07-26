@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LTCrawlerSSR")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b581e7c83a722413f178f7aa3a9573b9f1092581")]
 [assembly: System.Reflection.AssemblyProductAttribute("LTCrawlerSSR")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LTCrawlerSSR")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
