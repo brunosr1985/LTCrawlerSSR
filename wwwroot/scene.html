@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LTCrawler SSE Overlay</title>
+    <style>
+        body { margin: 0; padding: 20px; background: transparent; font-family: sans-serif; color: white; }
+        .tower { background: rgba(0,0,0,0.8); padding: 15px; border-radius: 8px; width: 300px; }
+        .driver-row { display: flex; justify-content: space-between; border-bottom: 1px solid #333; padding: 5px 0; transition: all 0.3s ease; }
+        .pos { font-weight: bold; color: #ffcc00; }
+        .accent-f1 { border-left: 5px solid #ff3b30; }
+        .accent-f2 { border-left: 5px solid #0055ff; }
+    </style>
+</head>
+<body>
+    <div id="main-container" class="tower">
+        <h3 id="series-title">Loading...</h3>
+        <div id="standings-list">
+            <!-- Os dados serão inseridos aqui via JS -->
+        </div>
+    </div>
+
+    <script>
+        const standingsList = document.getElementById('standings-list');
+        const seriesTitle = document.getElementById('series-title');
+        const container = document.getElementById('main-container');
+
+        // Conecta ao stream SSE do backend .NET 10
+        const evtSource = new EventSource("/stream-race");
+
+        evtSource.onmessage = (event) => {
+            const state = JSON.parse(event.data);
+            
+            // 1. Atualizar Título e Estilo Global
+            seriesTitle.innerText = `${state.Series} Live Timing`;
+            container.className = `tower accent-${state.Series.toLowerCase()}`;
+
+            // 2. Atualizar Lista de Pilotos dinamicamente
+            standingsList.innerHTML = state.Standings.map(d => `
+                <div class="driver-row">
+                    <span><span class="pos">${d.Position}.</span> ${d.Tla}</span>
+                    <span style="font-family: monospace;">${d.Gap}</span>
+                </div>
+            `).join('');
+        };
+
+        evtSource.onerror = (err) => {
+            console.error("SSE connection failed. Retrying...", err);
+        };
+    </script>
+</body>
+</html>

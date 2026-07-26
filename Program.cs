@@ -1,3 +1,4 @@
+using System.Text.Json;
 using MyRaceBackend.Models;
 using MyRaceBackend.Providers;
 using MyRaceBackend.Services;
@@ -113,6 +114,26 @@ app.MapGet("/overlay", async (RaceStateModel state, HttpContext context) =>
 
     html += "</div></body></html>";
     await context.Response.WriteAsync(html);
+});
+// Endpoint que "empurra" dados para o Overlay via SSE
+app.MapGet("/stream-race", async (RaceSessionOrchestrator orchestrator, HttpContext context, CancellationToken ct) =>
+{
+    context.Response.ContentType = "text/event-stream";
+    context.Response.Headers.Append("Cache-Control", "no-cache");
+    context.Response.Headers.Append("Connection", "keep-alive");
+
+    while (!ct.IsCancellationRequested)
+    {
+        var state = orchestrator.GetState();
+        var json = JsonSerializer.Serialize(state);
+        
+        // Formato padrão SSE: "data: {json}\n\n"
+        await context.Response.WriteAsync($"data: {json}\n\n", ct);
+        await context.Response.Body.FlushAsync(ct);
+
+        // Aguarda 1 segundo antes do próximo push para não sobrecarregar
+        await Task.Delay(1000, ct);
+    }
 });
 
 app.MapGet("/scene", async (RaceStateModel state, HttpContext context) =>

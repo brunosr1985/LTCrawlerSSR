@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using MyRaceBackend.Models;
 using MyRaceBackend.Providers;
 
 namespace MyRaceBackend.Services;
@@ -46,5 +47,11 @@ public class RaceSessionOrchestrator
         
         _activeProvider = f1Provider;
         await _activeProvider.StartAsync(CancellationToken.None);
+    }
+    public RaceStateModel GetState()
+    {
+        // Ele tenta pegar o estado do provedor que estiver rodando no momento
+        // Se não houver provedor ativo, retorna um estado padrão com "NONE"
+        return _activeProvider?.GetCurrentState() ?? new RaceStateModel { Series = "NONE" };
     }
 }
