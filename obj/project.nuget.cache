@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "t8igwTsglFY=",
+  "dgSpecHash": "V9+TbQO9+Wk=",
   "success": true,
-  "projectFilePath": "E:\\Twitch Stuff\\LTCrawlerSSR\\LTCrawlerSSR.csproj",
+  "projectFilePath": "e:\\Twitch Stuff\\LTCrawlerSSR\\LTCrawlerSSR.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bruno\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.10\\microsoft.aspnetcore.app.internal.assets.10.0.10.nupkg.sha512",
     "C:\\Users\\bruno\\.nuget\\packages\\microsoft.aspnetcore.http.connections.client\\10.0.10\\microsoft.aspnetcore.http.connections.client.10.0.10.nupkg.sha512",

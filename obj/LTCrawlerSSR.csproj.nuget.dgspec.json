@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Twitch Stuff\\LTCrawlerSSR\\LTCrawlerSSR.csproj": {}
+    "e:\\Twitch Stuff\\LTCrawlerSSR\\LTCrawlerSSR.csproj": {}
   },
   "projects": {
-    "E:\\Twitch Stuff\\LTCrawlerSSR\\LTCrawlerSSR.csproj": {
+    "e:\\Twitch Stuff\\LTCrawlerSSR\\LTCrawlerSSR.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Twitch Stuff\\LTCrawlerSSR\\LTCrawlerSSR.csproj",
+        "projectUniqueName": "e:\\Twitch Stuff\\LTCrawlerSSR\\LTCrawlerSSR.csproj",
         "projectName": "LTCrawlerSSR",
-        "projectPath": "E:\\Twitch Stuff\\LTCrawlerSSR\\LTCrawlerSSR.csproj",
+        "projectPath": "e:\\Twitch Stuff\\LTCrawlerSSR\\LTCrawlerSSR.csproj",
         "packagesPath": "C:\\Users\\bruno\\.nuget\\packages\\",
-        "outputPath": "E:\\Twitch Stuff\\LTCrawlerSSR\\obj\\",
+        "outputPath": "e:\\Twitch Stuff\\LTCrawlerSSR\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
