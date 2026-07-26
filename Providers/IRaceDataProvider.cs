@@ -1,6 +1,6 @@
-using MyRaceBackend.Models;
+using LTCrawlerSSR.Models;
 
-namespace MyRaceBackend.Providers;
+namespace LTCrawlerSSR.Providers;
 
 public interface IRaceDataProvider
 {

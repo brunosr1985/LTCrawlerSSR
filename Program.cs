@@ -1,7 +1,7 @@
 using System.Text.Json;
-using MyRaceBackend.Models;
-using MyRaceBackend.Providers;
-using MyRaceBackend.Services;
+using LTCrawlerSSR.Models;
+using LTCrawlerSSR.Providers;
+using LTCrawlerSSR.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

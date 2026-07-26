@@ -1,0 +1,82 @@
+@page "/scene"
+@inject MultiViewerF1Provider F1Provider
+@implements IDisposable
+
+<div class="scene-broadcast-container">
+    @if (_timingLines == null)
+    {
+        <div class="loading-state">Connecting to MultiViewer Telemetry...</div>
+    }
+    else
+    {
+        <div class="standings-grid">
+            @foreach (var entry in _timingLines.OrderBy(x => SafeParsePosition(x.Value.Position)))
+            {
+                var driverNumber = entry.Key;
+                var line = entry.Value;
+                
+                <div class="driver-row @(line.InPit ? "in-pit" : "")">
+                    <span class="pos">@(line.Position ?? "-")</span>
+                    <span class="num">#@driverNumber</span>
+                    <span class="gap">@(line.GapToLeader ?? "")</span>
+                    <span class="last-lap">@(line.LastLapTime?.Value ?? "-")</span>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    private Dictionary<string, TimingLine> _timingLines = new();
+    private PeriodicTimer? _timer;
+    private CancellationTokenSource? _cts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _cts = new CancellationTokenSource();
+        _timer = new PeriodicTimer(TimeSpan.FromMilliseconds(1000)); // Poll every 1 second
+
+        // Initial fetch
+        await PollDataAsync();
+
+        // Background loop runner
+        _ = RunPollingLoopAsync(_cts.Token);
+    }
+
+    private async Task RunPollingLoopAsync(CancellationToken cancellationToken)
+    {
+        try
+        {
+            while (_timer != null && await _timer.WaitForNextTickAsync(cancellationToken))
+            {
+                await PollDataAsync();
+            }
+        }
+        catch (OperationCanceledException)
+        {
+            // Expected on disposal
+        }
+    }
+
+    private async Task PollDataAsync()
+    {
+        var state = await F1Provider.GetLiveTimingStateAsync();
+        if (state?.TimingData?.Lines != null)
+        {
+            _timingLines = state.TimingData.Lines;
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    private int SafeParsePosition(string? posStr)
+    {
+        return int.TryParse(posStr, out var val) ? val : 99;
+    }
+
+    public void Dispose()
+    {
+        _cts?.Cancel();
+        _cts?.Dispose();
+        _timer?.Dispose();
+    }
+}

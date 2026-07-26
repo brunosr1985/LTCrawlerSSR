@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.SignalR.Client;
 using System.Text.Json;
-using MyRaceBackend.Models;
+using LTCrawlerSSR.Models;
 
-namespace MyRaceBackend.Providers;
+namespace LTCrawlerSSR.Providers;
 
 public class FiaSignalRProvider : IRaceDataProvider
 {

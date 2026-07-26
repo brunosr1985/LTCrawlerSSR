@@ -1,8 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
-using MyRaceBackend.Models;
-using MyRaceBackend.Providers;
+using LTCrawlerSSR.Models;
+using LTCrawlerSSR.Providers;
 
-namespace MyRaceBackend.Services;
+namespace LTCrawlerSSR.Services;
 
 public class RaceSessionOrchestrator
 {
